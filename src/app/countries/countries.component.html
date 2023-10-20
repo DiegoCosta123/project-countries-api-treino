@@ -1,0 +1,51 @@
+<main class="project_main">
+  <section>
+    <span *ngIf="loading">Carregando...</span>
+
+    <header class="header_title">
+      <h1 class="title_world">Where in the World?</h1>
+    </header>
+
+    <section *ngIf="!loading" class="worlds">
+      
+      <div class="search_container">
+        <input (change)="searchCountryByName($event)" class="search" type="search" title="search" placeholder="Search for a country..."/>
+        <img class="icon_search" src="../assets/icons/search_icon.svg" alt="icon-search"/>
+        
+        <div class="button_expansion">
+          <select (change)="selectContinent($event)" class="type_continents" title="types continents">
+            <option class="continents_content">Africa</option>
+            <option class="continents_content">America</option>
+            <option class="continents_content">Asia</option>
+            <option class="continents_content">Europe</option>
+            <option class="continents_content">Oceania</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flags_container">
+
+        <div class="card_countries" *ngFor="let country of countries">
+          <div routerLink="/country/{{country.name.official}}">
+            <div class="type_flag">
+              <img class="img_pais" [src]="country.flags.png" title="imagem do país">
+            </div>
+  
+            <div class="type_local_countries">
+              <p class="names_countries"> {{ country.name.common }} </p>
+          
+              <div class="information">
+                <p><span class="type_inform">Population</span>: {{formatPopulation(country.population)}}</p>
+                <p><span class="type_inform">Region</span>: {{country.region}}</p>
+                <p><span class="type_inform">Capital</span>: {{country.capital}}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </section>
+</main>
+

@@ -1,0 +1,49 @@
+<section class="project_country">
+
+  <header class="button_back_container">
+    <button routerLink="//" class="btn_back"><img class="icon_back" src="../../assets/icons/arrow_left_alt_back.svg"
+        alt="back"> Back</button>
+  </header>
+
+  <section class="country_information_container" *ngFor="let country of countries">
+    <div class="card_flags_country">
+
+      <img class="img_pais" [src]="country.flags.png" title="imagem do país">
+    </div>
+
+    <div class="informations_type_country">
+      <div>
+        <h1 class="title_country"> {{ country.name.common }} </h1>
+      </div>
+
+      <div class="type_information">
+        <div class="iformation_content">
+          <p class="inforation">Native name: <span class="result_api"> {{ country.name.official }} </span></p>
+          <p class="inforation">Population: <span class="result_api"> {{ formatPopulation(country.population) }} </span>
+          </p>
+          <p class="inforation">Region: <span class="result_api"> {{ country.region }} </span></p>
+          <p class="inforation">Sub Region: <span class="result_api"> {{ country.subregion }} </span></p>
+          <p class="inforation">Capital: <span class="result_api"> {{country.capital}} </span></p>
+        </div>
+
+        <div class="iformation_content">
+          <p class="inforation">Top Level Domain: <span class="result_api"> {{ country.tld }} </span></p>
+          <p *ngFor="let currency of country.currencies | keyvalue" class="inforation">Currencies: <span class="result_api"> {{$any(currency.value).name }} </span></p>
+          <p class="inforation">
+            Languages:
+          </p>
+          <p *ngFor="let currency of country.languages | keyvalue  last as isLast" class="inforation">
+            <span class="result_api"> {{ $any(currency.value)}} <span *ngIf="!isLast">,</span> </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="header_country">
+        <p class="country_next">Border Countries: <span class="next_content">{{ country.borders }}</span></p>
+      </div>
+
+    </div>
+
+  </section>
+</section>
+
